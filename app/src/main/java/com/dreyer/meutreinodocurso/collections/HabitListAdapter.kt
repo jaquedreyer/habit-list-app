@@ -28,9 +28,7 @@ class HabitListAdapter : RecyclerView.Adapter<HabitListAdapter.ViewHolder>() {
         holder.bind(asyncListDiffer.currentList[position])
     }
 
-    override fun getItemCount(): Int {
-        TODO("Not yet implemented")
-    }
+    override fun getItemCount(): Int = asyncListDiffer.currentList.size
 
     //create a new instance of ViewHolder that contains the layout xml of a list item
     //vai 'segurar' a view p depois ser inflada,ou seja, segura o layout xml depois so precisa mudar a info dentro
@@ -43,7 +41,6 @@ class HabitListAdapter : RecyclerView.Adapter<HabitListAdapter.ViewHolder>() {
     }
 
     object DiffCallback : DiffUtil.ItemCallback<HabitItem>() {
-
         override fun areItemsTheSame(oldItem: HabitItem, newItem: HabitItem): Boolean {
             return oldItem.id == newItem.id
         }
