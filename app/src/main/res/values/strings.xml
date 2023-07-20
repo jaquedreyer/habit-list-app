@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Meu Treino do Curso</string>
+
+    <!-- Content Descriptions and Accessibility Text -->
+    <string name="accessibility_add">Adicionar Hábito</string>
 </resources>
