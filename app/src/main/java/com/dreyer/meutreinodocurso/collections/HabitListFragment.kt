@@ -23,6 +23,9 @@ class HabitListFragment : Fragment () {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //set the adapter
+        binding.habitRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.habitRecyclerView.adapter = adapter
         //updating the list of habits
         adapter.updateHabits(MockHabits.habitItemList)
     }
