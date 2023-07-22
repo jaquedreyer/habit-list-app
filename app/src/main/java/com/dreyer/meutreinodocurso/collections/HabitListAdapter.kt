@@ -19,20 +19,26 @@ class HabitListAdapter : RecyclerView.Adapter<HabitListAdapter.ViewHolder>() {
     private val asyncListDiffer: AsyncListDiffer<HabitItem> = AsyncListDiffer(this, DiffCallback)
 
     //sobreescrever 3 metodos/fun do recyclerview adapter abaixo
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = HabitItemBinding.inflate(layoutInflater, parent, false)
-        return ViewHolder(binding)
+        return RecyclerView.ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         holder.bind(asyncListDiffer.currentList[position])
     }
 
     override fun getItemCount(): Int = asyncListDiffer.currentList.size
 
+    /** Update the list of habitats
+     * @see [https://medium.com/quark-works/android-asynclistdiffer-recycleviews-best-friend-365f75d84f4]
+     */
+    fun updateHabits(habits: List<HabitItem>) {
+        asyncListDiffer.submitList(habits)
+    }
+
     //create a new instance of ViewHolder that contains the layout xml of a list item
-    //vai 'segurar' a view p depois ser inflada,ou seja, segura o layout xml depois so precisa mudar a info dentro
     class ViewHolder(private val binding: HabitItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(habit: HabitItem) {
