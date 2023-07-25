@@ -40,7 +40,6 @@ class HabitListAdapter : RecyclerView.Adapter<HabitListAdapter.ViewHolder>() {
 
     //create a new instance of ViewHolder that contains the layout xml of a list item
     class ViewHolder(private val binding: HabitItemBinding) : RecyclerView.ViewHolder(binding.root) {
-
         fun bind(habit: HabitItem) {
             binding.titleTextView.text = habit.title
             binding.completeCheckBox.isChecked = habit.isCompleted
