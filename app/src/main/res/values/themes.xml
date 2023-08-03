@@ -1,9 +1,11 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
-    <style name="Base.Theme.MeuTreinoDoCurso" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <style name="Theme.App" parent="Theme.Material3.DayNight">
+        <!-- Primary brand color. -->
+
     </style>
 
-    <style name="Theme.MeuTreinoDoCurso" parent="Base.Theme.MeuTreinoDoCurso" />
+    <style name="Theme.App.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.App.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
