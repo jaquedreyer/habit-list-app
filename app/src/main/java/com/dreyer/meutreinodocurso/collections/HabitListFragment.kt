@@ -52,4 +52,8 @@ class HabitListFragment : Fragment () {
 
         binding.habitRecyclerView.addItemDecoration(divider)
     }
+    // metodo de espaçamento muito usado entre imagens em um grid ou lista
+    private fun addingDividerSpace(){
+        binding.habitRecyclerView.addItemDecoration(HabitListItemDecoration(requireContext()))
+    }
 }
