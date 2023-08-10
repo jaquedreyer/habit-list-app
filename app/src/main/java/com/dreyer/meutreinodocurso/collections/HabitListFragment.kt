@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dreyer.meutreinodocurso.R
 import com.dreyer.meutreinodocurso.dummy.MockHabits
@@ -19,6 +20,9 @@ class HabitListFragment : Fragment () {
 
     private lateinit var adapter: HabitListAdapter //var de iniciacao tardia, algum momento vou iniciar ela
 
+    private val viewModel: HabitListViewModel by activityViewModels {
+       HabitListViewModel.Factory(MockHabits)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         adapter = HabitListAdapter() //iniciei aqui
@@ -31,10 +35,20 @@ class HabitListFragment : Fragment () {
         binding.habitRecyclerView.adapter = adapter
 
         //updating the list of habits
-        adapter.updateHabits(MockHabits.habitItemList)
+        //adapter.updateHabits(MockHabits.habitItemList)
+        viewModel
+            .stateOnceAndStream()
+            //observar enquanto esse fragment existir:
+            .observe(viewLifecycleOwner) { state ->
+                bindUiState(state)
+            }
 
         //Adding decorations to our recycler view
         addingDividerDecoration()
+    }
+
+    private fun bindUiState(state: HabitListUiState) {
+        adapter.updateHabits(state.habitItemList)
     }
     private fun addingDividerDecoration(){
         //Adding line between items with MaterialDividerItemDecoration
