@@ -29,8 +29,12 @@ class HabitListFragment : Fragment () {
         //set the adapter
         binding.habitRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.habitRecyclerView.adapter = adapter
+
         //updating the list of habits
         adapter.updateHabits(MockHabits.habitItemList)
+
+        //Adding decorations to our recycler view
+        addingDividerDecoration()
     }
     private fun addingDividerDecoration(){
         //Adding line between items with MaterialDividerItemDecoration
