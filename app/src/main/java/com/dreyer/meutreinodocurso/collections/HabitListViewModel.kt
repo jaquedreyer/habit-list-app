@@ -27,6 +27,21 @@ class HabitListViewModel (private val repository: HabitsRepository) : ViewModel(
     //depois dos : especifico o tipo de retorno
     fun stateOnceAndStream() : LiveData<HabitListUiState> = uiState
 
+    //funcao que vai ser chamada pela activity - onde está o FAB
+    fun addRandomHabit() {
+        repository.addRandomNewHabit()
+        refreshUiState()
+    }
+
+    //permite atualizar a lista dentro do UiState
+    private fun refreshUiState() {
+        uiState.value?.let { currentUiState ->
+            uiState.value = currentUiState.copy(
+                habitItemList = repository.fetchHabits()
+            )
+        }
+    }
+
     //criar um factory do viewmodel
     //factory é um design pattern
     //depois isso pode ser usado pelo fragment pra criar uma instancia desse viewmodel
