@@ -30,7 +30,8 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    //enable the viewbinding
+
+    //first, enable the viewbinding in the build.gradle (module app)
     buildFeatures {
         viewBinding true
     }
