@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.dreyer.meutreinodocurso.databinding.HabitItemBinding
 
 
 /**
@@ -40,7 +41,7 @@ class HabitListAdapter : RecyclerView.Adapter<HabitListAdapter.ViewHolder>() {
 
     //create a new instance of ViewHolder that contains the layout xml of a list item
     class ViewHolder(private val binding: HabitItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(habit: HabitItem) {
+        fun bind (habit: HabitItem) {
             binding.titleTextView.text = habit.title
             binding.subtitleTextView.text = habit.subtitle
             binding.completeCheckBox.isChecked = habit.isCompleted

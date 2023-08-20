@@ -7,6 +7,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.CreationExtras
 import com.dreyer.meutreinodocurso.core.HabitsRepository
 
+/**
+ * @see [https://developer.android.com/topic/libraries/architecture/viewmodel]
+ */
+
 /** dentro da classe que estende de viewmodel vou declarar o livedata
  * sempre que algo sofrer modificação, add habito, hab excluido, etc o fragment vai observar a mudanca e
  * e avisar o adapter que entao vai comunicar o recyclerview pra atualizar na tela
