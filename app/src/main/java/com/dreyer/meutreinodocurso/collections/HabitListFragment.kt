@@ -24,6 +24,8 @@ class HabitListFragment : Fragment () {
 
     private lateinit var adapter: HabitListAdapter //var de iniciacao tardia, algum momento vou iniciar ela
 
+    //by activityViewModels para criar um unico viewmodel por activity;pq quero usar o mesmo viewmodel em qualquer fragment q estiver vivendo dentro da activity
+    //ou by viewModels para um fragment
     private val viewModel: HabitListViewModel by activityViewModels {
        HabitListViewModel.Factory(MockHabits)
     }
