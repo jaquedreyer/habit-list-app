@@ -15,18 +15,18 @@ import com.dreyer.meutreinodocurso.databinding.HabitItemBinding
  *  We use the [HabitItem] as a model for the binding.
  */
 
-class HabitListAdapter : RecyclerView.Adapter<HabitListAdapter.ViewHolder>() {
+class HabitListAdapter (private val habitListViewModel: HabitListViewModel): RecyclerView.Adapter<HabitListAdapter.ViewHolder>() {
 
     private val asyncListDiffer: AsyncListDiffer<HabitItem> = AsyncListDiffer(this, DiffCallback)
 
     //sobreescrever 3 metodos/fun do recyclerview adapter abaixo
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = HabitItemBinding.inflate(layoutInflater, parent, false)
-        return RecyclerView.ViewHolder(binding)
+        return ViewHolder(binding, habitListViewModel)
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(asyncListDiffer.currentList[position])
     }
 
@@ -40,11 +40,16 @@ class HabitListAdapter : RecyclerView.Adapter<HabitListAdapter.ViewHolder>() {
     }
 
     //create a new instance of ViewHolder that contains the layout xml of a list item
-    class ViewHolder(private val binding: HabitItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: HabitItemBinding,
+                     private val viewModel: HabitListViewModel,
+    ) : RecyclerView.ViewHolder(binding.root) {
         fun bind (habit: HabitItem) {
             binding.titleTextView.text = habit.title
             binding.subtitleTextView.text = habit.subtitle
             binding.completeCheckBox.isChecked = habit.isCompleted
+            binding.completeCheckBox.setOnClickListener {
+                viewModel.toggleHabitCompleted(habit.id)
+            }
         }
     }
 
