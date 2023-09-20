@@ -15,7 +15,7 @@ import com.dreyer.meutreinodocurso.databinding.HabitItemBinding
  *  We use the [HabitItem] as a model for the binding.
  */
 
-class HabitListAdapter (private val habitListViewModel: HabitListViewModel): RecyclerView.Adapter<HabitListAdapter.ViewHolder>() {
+class HabitListAdapter (private val viewModel: HabitListViewModel): RecyclerView.Adapter<HabitListAdapter.ViewHolder>() {
 
     private val asyncListDiffer: AsyncListDiffer<HabitItem> = AsyncListDiffer(this, DiffCallback)
 
@@ -23,7 +23,7 @@ class HabitListAdapter (private val habitListViewModel: HabitListViewModel): Rec
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = HabitItemBinding.inflate(layoutInflater, parent, false)
-        return ViewHolder(binding, habitListViewModel)
+        return ViewHolder(binding, viewModel)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -59,7 +59,7 @@ class HabitListAdapter (private val habitListViewModel: HabitListViewModel): Rec
         }
 
         override fun areContentsTheSame(oldItem: HabitItem, newItem: HabitItem): Boolean {
-            return oldItem == newItem
+            return oldItem.isCompleted == newItem.isCompleted
         }
     }
 

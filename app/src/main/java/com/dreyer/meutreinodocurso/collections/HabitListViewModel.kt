@@ -21,15 +21,15 @@ class HabitListViewModel (private val repository: HabitsRepository) : ViewModel(
 
     //declarar uistate
     //by lazy só vai instanciar a primeira vez que alguem chamar essa propriedade
-    private val uiState: MutableLiveData<HabitListUiState> by lazy {
-        MutableLiveData<HabitListUiState>(HabitListUiState(habitItemList = repository.fetchHabits()))
+    private val uiState: MutableLiveData<UiState> by lazy {
+        MutableLiveData<UiState>(UiState(habitItemList = repository.fetchHabits()))
     }
 
     //expor as propriedades de forma imutable, pois
     // nao queremos que o fragment possa modificar o state
     //apenas quero que o fragment observe o estado que ta vindo do viewmodel e pedir pro viewmodel fazer modificacoes nesse estado
     //depois dos : especifico o tipo de retorno
-    fun stateOnceAndStream() : LiveData<HabitListUiState> = uiState
+    fun stateOnceAndStream() : LiveData<UiState> = uiState
 
     //funcao que vai ser chamada pela activity - onde está o FAB
     fun addRandomHabit() {
@@ -52,8 +52,15 @@ class HabitListViewModel (private val repository: HabitsRepository) : ViewModel(
         }
     }
 
+    //UI State contendo todos dados necessarios para mostrar a lista
+    //o nosso estado tem uma propriedade que é a lista de habitos habitItemList
+    data class UiState(val habitItemList: List<HabitItem>)
+
+
+
     //criar um factory do viewmodel
     //factory é um design pattern
+    //ViewModel Factory needed to provide Repository injection to ViewModel
     //depois isso pode ser usado pelo fragment pra criar uma instancia desse viewmodel
     //a classe recebe o repositorio no seu construtor e vai estender de viewmodelprovider
     class Factory(private val repository: HabitsRepository) : ViewModelProvider.Factory {

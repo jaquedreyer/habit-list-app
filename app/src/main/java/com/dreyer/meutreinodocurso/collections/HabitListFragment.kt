@@ -53,15 +53,15 @@ class HabitListFragment : Fragment () {
         viewModel
             .stateOnceAndStream()
             //observar enquanto esse fragment existir:
-            .observe(viewLifecycleOwner) { state ->
-                bindUiState(state)
+            .observe(viewLifecycleOwner) {
+                bindUiState(it)
             }
 
         //Adding decorations to our recycler view
         addingDividerDecoration()
     }
 
-    private fun bindUiState(state: HabitListUiState) {
+    private fun bindUiState(state: HabitListViewModel.UiState) {
         adapter.updateHabits(state.habitItemList)
     }
     private fun addingDividerDecoration(){
