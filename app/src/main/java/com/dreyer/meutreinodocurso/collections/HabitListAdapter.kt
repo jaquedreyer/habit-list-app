@@ -62,6 +62,4 @@ class HabitListAdapter (private val viewModel: HabitListViewModel): RecyclerView
             return oldItem.isCompleted == newItem.isCompleted
         }
     }
-
-
 }
