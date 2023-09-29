@@ -18,7 +18,6 @@ import com.dreyer.meutreinodocurso.core.HabitsRepository
 
 //nosso viewmodel vai importar o repository criado
 class HabitListViewModel (private val repository: HabitsRepository) : ViewModel() {
-
     //declarar uistate
     //by lazy só vai instanciar a primeira vez que alguem chamar essa propriedade
     private val uiState: MutableLiveData<UiState> by lazy {
