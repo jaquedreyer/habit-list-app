@@ -46,7 +46,7 @@ class HabitListViewModel (private val repository: HabitsRepository) : ViewModel(
     private fun refreshUiState() {
         uiState.value?.let { currentUiState ->
             uiState.value = currentUiState.copy(
-                habitItemList = repository.fetchHabits()
+                habitItemList = repository.fetchHabits().sortedBy { it.isCompleted }
             )
         }
     }
