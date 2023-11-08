@@ -34,4 +34,18 @@ class HabitListViewModelTest {
         //Verify
         assert(uiState.habitItemList.isNotEmpty())
     }
+
+    @Test
+    fun `Verify if uiState is updated when a habit is toggled`(){
+        //Observar uiState
+        //Marcar um habito como concluido
+        //Pegar o uiState atualizado
+        //Verificar se agora ele esta concluido
+
+        //Prepare
+
+        //Execute
+
+        //Verify
+    }
 }
