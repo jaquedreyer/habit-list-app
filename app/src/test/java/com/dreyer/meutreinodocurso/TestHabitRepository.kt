@@ -9,7 +9,7 @@ import java.util.UUID
  */
 class TestHabitRepository : HabitsRepository {
 
-    private val habitList = mutableListOf<HabitItem>()
+    val habitList = mutableListOf<HabitItem>()
 
     override fun fetchHabits() = habitList  //retornar a lista de habitos
 
