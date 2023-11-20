@@ -1,7 +1,10 @@
 package com.dreyer.meutreinodocurso
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.dreyer.meutreinodocurso.collections.HabitItem
 import com.dreyer.meutreinodocurso.collections.HabitListViewModel
+import junit.framework.TestCase.assertEquals
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -37,15 +40,14 @@ class HabitListViewModelTest {
 
     @Test
     fun `Verify if uiState is updated when a habit is toggled`(){
-        //Observar uiState
-        //Marcar um habito como concluido
-        //Pegar o uiState atualizado
-        //Verificar se agora ele esta concluido
-
         //Prepare
+        testHabitRepository.habitList.add(HabitItem("ID", "Title habit test", "Subtitle habit test", false))
+        val uiState = viewModel.stateOnceAndStream().getOrAwaitValue()
 
         //Execute
+        viewModel.toggleHabitCompleted(uiState.habitItemList.first().id)
 
         //Verify
+        assert(uiState.habitItemList.first().isCompleted)
     }
 }
